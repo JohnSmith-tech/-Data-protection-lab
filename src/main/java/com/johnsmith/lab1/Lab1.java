@@ -51,11 +51,7 @@ public class Lab1 {
             u = Arrays.copyOf(v, v.length);
             v = Arrays.copyOf(t, t.length);
         }
-        u[0] = gcd(a, b);
-        u[1] = v[1];
-        u[2] = v[2];
         return u;
-
     }
 
 
