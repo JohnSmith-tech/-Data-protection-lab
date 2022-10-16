@@ -15,7 +15,7 @@ public class Lab2 {
         String fileExtension = '.' + (String) Arrays.stream(fileName.split("\\.")).toArray()[1];
         shamir(bytes, "./result/resultShamir" + fileExtension);
         elGamal(bytes, "./result/resultElGamal" + fileExtension);
-        rsa(bytes, "./result/resultRSA.txt");
+        rsa(bytes, "./result/resultRSA" + fileExtension);
         vernam(bytes, "./result/resultVernam" + fileExtension);
 
     }
