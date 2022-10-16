@@ -70,6 +70,7 @@ public class Lab1 {
         boolean flag = true;
         long p = 0;
         long q = 0;
+
         while (flag) {
             p = (long) (Math.random() * 1000000000) + 3;
             if (testFerma(p, 1000)) {
@@ -79,6 +80,7 @@ public class Lab1 {
                 }
             }
         }
+
         System.out.println("P: " + p);
         System.out.println("Q: " + q);
 
@@ -137,7 +139,6 @@ public class Lab1 {
                 break;
             }
         }
-
 
         return (int) (I * m - J);
     }
