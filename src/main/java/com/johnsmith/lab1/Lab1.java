@@ -51,11 +51,7 @@ public class Lab1 {
             u = Arrays.copyOf(v, v.length);
             v = Arrays.copyOf(t, t.length);
         }
-        u[0] = gcd(a, b);
-        u[1] = v[1];
-        u[2] = v[2];
         return u;
-
     }
 
 
@@ -74,6 +70,7 @@ public class Lab1 {
         boolean flag = true;
         long p = 0;
         long q = 0;
+
         while (flag) {
             p = (long) (Math.random() * 1000000000) + 3;
             if (testFerma(p, 1000)) {
@@ -83,6 +80,7 @@ public class Lab1 {
                 }
             }
         }
+
         System.out.println("P: " + p);
         System.out.println("Q: " + q);
 
@@ -141,7 +139,6 @@ public class Lab1 {
                 break;
             }
         }
-
 
         return (int) (I * m - J);
     }
