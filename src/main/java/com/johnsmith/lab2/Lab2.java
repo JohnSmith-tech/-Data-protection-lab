@@ -83,8 +83,8 @@ public class Lab2 {
             long x1 = Lab1.exponentiation(data[i], ca, p);
             long x2 = Lab1.exponentiation(x1, cb, p);
             long x3 = Lab1.exponentiation(x2, da, p);
-            long x4 = Lab1.exponentiation(x3, db, p);
-            decode[i] = (byte) x4;
+            byte x4 = (byte) Lab1.exponentiation(x3, db, p);
+            decode[i] = x4;
         }
 
         writeFile(decode, resultFileName);
@@ -118,8 +118,8 @@ public class Lab2 {
         byte[] decode = new byte[data.length];
         for (int i = 0; i < data.length; i++) {
             long b = data[i] * Lab1.exponentiation(y, k, p);
-            long m1 = (b * Lab1.exponentiation(a, p - 1 - x, p)) % p;
-            decode[i] = (byte) m1;
+            byte m1 = (byte) ((b * Lab1.exponentiation(a, p - 1 - x, p)) % p);
+            decode[i] = m1;
         }
 
         writeFile(decode, resultFileName);
@@ -163,8 +163,8 @@ public class Lab2 {
         byte[] decode = new byte[data.length];
         for (int i = 0; i < data.length; i++) {
             long e = Lab1.exponentiation(data[i], d, n);
-            long m1 = Lab1.exponentiation(e, c, n);
-            decode[i] = (byte) m1;
+            byte m1 = (byte) Lab1.exponentiation(e, c, n);
+            decode[i] = m1;
         }
 
         writeFile(decode, resultFileName);
