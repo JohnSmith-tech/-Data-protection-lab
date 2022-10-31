@@ -3,13 +3,13 @@ package com.johnsmith;
 import com.johnsmith.lab1.Lab1;
 import com.johnsmith.lab2.Lab2;
 
+import java.math.BigInteger;
 import java.net.URISyntaxException;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws URISyntaxException {
         startLab2();
-
     }
 
 
@@ -33,13 +33,13 @@ public class Main {
 
         System.out.println("\nBabyStepGiantStep:");
         System.out.println("y = " + yBabyStep + " a = " + aBabyStep + " p = " + pBabyStep + " => x = " + Lab1.babyStepGiantStep(yBabyStep, pBabyStep, aBabyStep));
-        System.out.println(Lab1.exponentiation(7, -1, 22));
 
     }
 
 
     static void startLab2() throws URISyntaxException {
         Lab2.startCiphers("test.txt");
+
 //        Lab2.startCiphers("lamb.png");
     }
 }

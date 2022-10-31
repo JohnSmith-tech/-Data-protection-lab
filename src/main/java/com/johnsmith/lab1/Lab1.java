@@ -8,8 +8,8 @@ public class Lab1 {
         long s = a;
         List<Integer> listX = convertToBinaryNumSys(x);
 
-        for (int i = listX.size() - 1; i >= 0; i--) {
-            if (listX.get(i) == 1) {
+        for (Integer integer : listX) {
+            if (integer == 1) {
                 y = y * s % p;
             }
             s = s * s % p;
@@ -19,16 +19,12 @@ public class Lab1 {
 
     private static List<Integer> convertToBinaryNumSys(long x) {
         List<Integer> list = new ArrayList<>();
+        int mod = 0;
         while (x != 0) {
-            if (x % 2 > 0) {
-                list.add(1);
-            } else {
-                list.add(0);
-            }
+            mod = (int) (x % 2);
+            list.add(mod);
             x /= 2;
         }
-
-        Collections.reverse(list);
         return list;
     }
 
@@ -73,9 +69,9 @@ public class Lab1 {
 
         while (flag) {
             p = (long) (Math.random() * 1000000000) + 3;
-            if (testFerma(p, 1000)) {
+            if (testFerma(p, 100)) {
                 q = (p - 1) / 2;
-                if (testFerma(q, 1000)) {
+                if (testFerma(q, 100)) {
                     flag = false;
                 }
             }
