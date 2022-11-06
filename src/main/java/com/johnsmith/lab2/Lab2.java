@@ -2,6 +2,7 @@ package com.johnsmith.lab2;
 
 import com.johnsmith.lab1.Lab1;
 
+import java.net.Socket;
 import java.net.URISyntaxException;
 import java.util.*;
 
@@ -62,10 +63,10 @@ public class Lab2 {
 
 
         writeFileLong(codeLong, "./coding/shamir.txt");
-        List<Long> codeByte = readFileToArrayOfLong("./coding/shamir.txt");
+        List<Long> coding = readFileToArrayOfLong("./coding/shamir.txt");
 
-        for (int i = 0; i < codeByte.size(); i++) {
-            long x2 = Lab1.exponentiation(codeByte.get(i), cb, p);
+        for (int i = 0; i < coding.size(); i++) {
+            long x2 = Lab1.exponentiation(coding.get(i), cb, p);
             long x3 = Lab1.exponentiation(x2, da, p);
             byte x4 = (byte) Lab1.exponentiation(x3, db, p);
             decode[i] = x4;
@@ -79,30 +80,41 @@ public class Lab2 {
     public static void elGamal(byte[] data, String resultFileName) {
         boolean flag = true;
         long p = 0;
+        long q = 0;
         while (flag) {
-            p = (long) (Math.random() * 10000000) + 255;
+            p = (long) (Math.random() * 1000000000);
             if (Lab1.testFerma(p, 100)) {
-                flag = false;
+                q = (p - 1) / 2;
+                if (Lab1.testFerma(q, 100)) {
+                    flag = false;
+                }
+            }
+        }
+
+        long g = (long) (Math.random() * p - 1);
+        if (g == 0 || g == 1) {
+            g = 2;
+        }
+
+        while (Lab1.exponentiation(g, q, p) != 1) {
+            g = (long) (Math.random() * p - 1);
+            if (g == 0 || g == 1) {
+                g = 2;
             }
         }
 
 
-        long g = (long) ((Math.random() * p - 1) + 3);
-        while (Lab1.exponentiation(g, 1, p) != 1) {
-            g = (long) ((Math.random() * p - 1) + 3);
-        }
-
-
         long x = (long) ((Math.random() * p - 1) + 1);
-        long k = (long) ((Math.random() * p - 2) + 2);
         long y = Lab1.exponentiation(g, x, p);
-        long a = Lab1.exponentiation(g, k, p);
 
         byte[] decode = new byte[data.length];
 
         List<Long> codeLong = new ArrayList<>();
+        List<Long> listA = new ArrayList<>();
         for (byte datum : data) {
-            long b = datum * Lab1.exponentiation(y, k, p);
+            long k = (long) ((Math.random() * p - 2) + 2);
+            listA.add(Lab1.exponentiation(g, k, p));
+            long b = (datum * Lab1.exponentiation(y, k, p)) % p;
             codeLong.add(b);
         }
 
@@ -111,7 +123,8 @@ public class Lab2 {
 
 
         for (int i = 0; i < data.length; i++) {
-            byte m1 = (byte) ((codeByte.get(i) * Lab1.exponentiation(a, p - 1 - x, p)) % p);
+
+            byte m1 = (byte) ((codeByte.get(i) * Lab1.exponentiation(listA.get(i), p - 1 - x, p)) % p);
             decode[i] = m1;
         }
 
