@@ -3,12 +3,12 @@ package com.johnsmith;
 import com.johnsmith.lab1.Lab1;
 import com.johnsmith.lab2.Lab2;
 
-import java.math.BigInteger;
 import java.net.URISyntaxException;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws URISyntaxException {
+     //   startLab1();
         startLab2();
     }
 
